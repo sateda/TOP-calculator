@@ -14,12 +14,23 @@ function divide(a, b) {
     return a / b;
 }
 
-const resultAdd = add(1,2);
-const resultSubtract = subtract(2,1);
-const resultMultiply = multiply(2,2);
-const resultDivide = divide(4,2);
+let a;
+let b;
+let operator;
 
-console.log(resultAdd);
-console.log(resultSubtract);
-console.log(resultMultiply);
-console.log(resultDivide);
+const result = operate(1 ,2, "divide");
+
+function operate(numberA, numberB, operator) {
+    console.log(operator);
+    
+    switch(operator) {
+        case "add": return add(numberA, numberB)
+        case "subtract": return subtract(numberA, numberB);
+        case "multiply": return multiply(numberA, numberB);
+        case "divide": return divide(numberA, numberB);
+        default: console.log("Error: operator unknown");
+    }
+}
+
+
+console.log(result);
