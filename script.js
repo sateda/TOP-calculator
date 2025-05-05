@@ -43,34 +43,22 @@ input_buttons.forEach((input_button) => {
 });
 
 // calculator flow function
-let newNumber = "";
+let display = "";
 let numberA = "";
 let numberB = "";
 let possibleNumbers = new Set(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]);
 
-function calculatorAction(input) {
+function calculatorAction(input) {    
+    // If input is an number add it to the string newNumber
     if(possibleNumbers.has(input)) {
-        newNumber = newNumber + input;
-        refreshDisplay(newNumber);
+        display = display + input;
+        refreshDisplay(display);
+    }
+
+    switch(input) {
+        case "Clear":
+            display = "";
+            refreshDisplay(display);
+            break;
     }
 }
-
-
-// let counter = 1;
-
-// function calculatorAction(input) {
-//     let numberA = 0;
-//     let numberB = 0;
-    
-//     // Convert input to an number if possible
-//     const inputNumber = Number(input);
-
-//     if(Number.isInteger(inputNumber) === true) {
-//         let newNumber = inputNumber * counter;
-//         refreshDisplay(newNumber);
-        
-//         counter++;
-//     }
-
-
-// }
