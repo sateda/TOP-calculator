@@ -1,51 +1,10 @@
-function add(a, b) {
-    return a + b;    
-}
-
-function subtract(a, b) {
-    return a - b;
-}
-
-function multiply(a, b) {
-    return a * b;
-}
-
-function divide(a, b) {
-    return a / b;
-}
-
-let a;
-let b;
-let operator;
-
-const result = operate(1 ,2, "divide");
-
-function operate(numberA, numberB, operator) {   
-    let a = Number(numberA);
-    let b = Number(numberB);
-    
-    switch(operator) {
-        case "add": return add(a, b)
-        case "subtract": return subtract(a, b);
-        case "multiply": return multiply(a, b);
-        case "divide": return divide(a, b);
-        default: console.log("Error: operator unknown");
-    }
-}
-
-// Evaluate input and refresh the display
-function refreshDisplay(output) {
-    const display = document.querySelector("#display");
-    display.setAttribute("value", output);
-}
-
 // Add event handler to all the buttons and invoke refresh function
 const input_buttons = document.querySelectorAll(".input_button");
 input_buttons.forEach((input_button) => {
     input_button.addEventListener("click", event => calculatorAction(event.target.value));
 });
 
-// calculator variables
+// define all variables for calculations
 let display = "";
 let displayResult = 0;
 let numberA = "x";
@@ -54,7 +13,7 @@ let requestedOperation = "";
 let possibleNumbers = new Set(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]);
 let operation = new Set(["add", "subtract", "multiply", "divide"]);
 
-
+// Function that decides what happens, this is run when an button is clicked
 function calculatorAction(input) {    
     // Clear display and reset numbers if last operation was equal sign
     if(requestedOperation == "=" && displayResult === 1) {
@@ -64,7 +23,6 @@ function calculatorAction(input) {
         displayResult = 0;
         requestedOperation = "";
         refreshDisplay(display);
-        console.log("hello");
     }
     
     // Clear display if previous action was an result
@@ -121,4 +79,24 @@ function calculatorAction(input) {
             refreshDisplay(display);
             break;
     }
+}
+
+// Function to perform the actual calculation
+function operate(numberA, numberB, operator) {   
+    let a = Number(numberA);
+    let b = Number(numberB);
+    
+    switch(operator) {
+        case "add": return a+b;
+        case "subtract": return a-b;
+        case "multiply": return a*b;
+        case "divide": return a/b;
+        default: console.log("Error: operator unknown");
+    }
+}
+
+// Evaluate input and refresh the display
+function refreshDisplay(output) {
+    const display = document.querySelector("#display");
+    display.setAttribute("value", output);
 }
